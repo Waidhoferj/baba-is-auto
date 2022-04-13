@@ -2,9 +2,10 @@ import gym
 from gym.utils import seeding
 from gym.envs.registration import register
 import numpy as np
-
+import os
 import pyBaba
 import rendering
+appdir = os.path.abspath(os.path.dirname(__file__))
 
 
 class BabaEnv(gym.Env):
@@ -13,7 +14,7 @@ class BabaEnv(gym.Env):
     def __init__(self, enable_render=True):
         super(BabaEnv, self).__init__()
 
-        self.path = '../../../Resources/Maps/baba_is_you.txt'
+        self.path = f'{appdir}/../../../Resources/Maps/baba_is_you.txt'
         self.game = pyBaba.Game(self.path)
         self.renderer = rendering.Renderer(self.game)
 

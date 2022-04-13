@@ -1,5 +1,7 @@
 import pyBaba
 import pygame
+import os
+appdir = os.path.abspath(os.path.dirname(__file__))
 
 BLOCK_SIZE = 48
 
@@ -14,7 +16,7 @@ class SpriteLoader:
 
         for i in self.icon_images:
             self.icon_images[i] = pygame.transform.scale(pygame.image.load(
-                './sprites/icon/{}.gif'.format(self.icon_images[i])), (BLOCK_SIZE, BLOCK_SIZE))
+                f'{appdir}/sprites/icon/{self.icon_images[i]}.gif'), (BLOCK_SIZE, BLOCK_SIZE))
 
         self.text_images = {pyBaba.ObjectType.BABA: 'BABA',
                             pyBaba.ObjectType.IS: 'IS',
@@ -28,4 +30,4 @@ class SpriteLoader:
 
         for i in self.text_images:
             self.text_images[i] = pygame.transform.scale(pygame.image.load(
-                './sprites/text/{}.gif'.format(self.text_images[i])), (BLOCK_SIZE, BLOCK_SIZE))
+                f'{appdir}/sprites/text/{self.text_images[i]}.gif'.format()), (BLOCK_SIZE, BLOCK_SIZE))
