@@ -21,6 +21,12 @@ namespace baba_is_auto
 class RuleManager
 {
  public:
+    //! Constructor
+    RuleManager();
+
+    //! Extensive Constructor
+    RuleManager(std::vector<Rule> rules);
+
     //! Adds a rule.
     //! \param rule The rule.
     void AddRule(const Rule& rule);
@@ -36,6 +42,9 @@ class RuleManager
     //! \param type The object type to find a rule.
     //! \return A list of rules that has specific type.
     std::vector<Rule> GetRules(ObjectType type) const;
+
+    //! Get a list of rules with any type
+    std::vector<Rule> GetPropertyRules() const;
 
     //! Gets the number of rules.
     //! \return The number of rules.

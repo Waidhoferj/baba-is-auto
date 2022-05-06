@@ -20,6 +20,16 @@ std::map<ObjectType, std::size_t> TENSOR_DIM_MAP = {
     { ObjectType::ROCK, 12 },     { ObjectType::PUSH, 13 }
 };
 
+// std::vec<ObjectType> OBJ_TYPES = {
+//      ObjectType::BABA, ObjectType::IS,
+//      ObjectType::YOU, ObjectType::ICON_EMPTY,
+//      ObjectType::FLAG, ObjectType::WIN,
+//      ObjectType::ICON_WALL, ObjectType::ICON_ROCK,
+//      ObjectType::ICON_BABA, ObjectType::ICON_FLAG,
+//      ObjectType::WALL, ObjectType::STOP,
+//      ObjectType::ROCK, ObjectType::PUSH,
+// };
+
 std::vector<float> Preprocess::StateToTensor(const Game& game)
 {
     const std::size_t width = game.GetMap().GetWidth();
@@ -62,4 +72,30 @@ std::vector<float> Preprocess::StateToTensor(const Game& game)
 
     return tensor;
 }
+
+// void Preprocess::TensorToState(Game& game, std::vector<float> tensor)
+// {
+//     const std::size_t width = game.GetMap().GetWidth();
+//     const std::size_t height = game.GetMap().GetHeight();
+
+//     const auto ToIndex = [width, height](std::size_t x, std::size_t y,
+//                                          std::size_t c) {
+//         return (c * width * height) + (y * width) + x;
+//     };
+
+//     for (std::size_t y = 0; y < height; ++y)
+//     {
+//         for (std::size_t x = 0; x < width; ++x)
+//         {
+//             const auto tile = game.GetMap().At(x, y)
+//             *tile = Object(std::vector<ObjectType>);
+            
+//              for (std::size_t c = 0; c < OBJ_TYPES.length; c++) {
+//                     if tensor[ToIndex(x, y, c)] == 1.0f {
+//                      tile.Add(OBJ_TYPES[c])
+//                     }
+//                 }
+//             }
+//         }
+//     }
 }  // namespace baba_is_auto

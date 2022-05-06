@@ -33,6 +33,9 @@ class Map
     //! \param height The size of the height.
     Map(std::size_t width, std::size_t height);
 
+    //! extensive constructor
+    Map(std::size_t width, std::size_t height, std::vector<Object> initObjects, std::vector<Object> objects);
+
     //! Resets map data.
     void Reset();
 
@@ -43,6 +46,12 @@ class Map
     //! Gets the height of the map.
     //! \return The height of the map.
     std::size_t GetHeight() const;
+
+    //! Get initial objects in the map
+    std::vector<Object> GetInitObjects() const;
+
+    //! Get the objects in the map
+    std::vector<Object> GetObjects() const;
 
     //! Loads the data of the map.
     //! \param filename The file name to load.

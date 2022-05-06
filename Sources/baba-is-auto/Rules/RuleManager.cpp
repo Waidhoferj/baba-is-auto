@@ -11,6 +11,17 @@
 
 namespace baba_is_auto
 {
+
+// constructor
+RuleManager::RuleManager(){
+    // do nothing
+}
+
+// extensive constructor
+RuleManager::RuleManager(std::vector<Rule> rules){
+    m_rules = rules;
+}
+
 void RuleManager::AddRule(const Rule& rule)
 {
     m_rules.emplace_back(rule);
@@ -28,6 +39,11 @@ void RuleManager::RemoveRule(const Rule& rule)
 void RuleManager::ClearRules()
 {
     m_rules.clear();
+}
+
+std::vector<Rule> RuleManager::GetPropertyRules() const
+{
+    return m_rules;
 }
 
 std::vector<Rule> RuleManager::GetRules(ObjectType type) const
