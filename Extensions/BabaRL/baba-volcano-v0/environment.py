@@ -6,14 +6,19 @@ import numpy as np
 import pyBaba
 import rendering
 
+import os
+import copy
+
+appdir = os.path.abspath(os.path.dirname(__file__))
+
 
 class BabaEnv(gym.Env):
-    metadata = {'render.modes': ['human', 'rgb_array']}
+    metadata = {"render.modes": ["human", "rgb_array"]}
 
     def __init__(self, enable_render=True):
         super(BabaEnv, self).__init__()
 
-        self.path = '../../../Resources/Maps/volcano.txt'
+        self.path = f"{appdir}/../../../Resources/Maps/volcano.txt"
         self.game = pyBaba.Game(self.path)
         self.renderer = rendering.Renderer(self.game)
 
@@ -21,7 +26,7 @@ class BabaEnv(gym.Env):
             pyBaba.Direction.UP,
             pyBaba.Direction.DOWN,
             pyBaba.Direction.LEFT,
-            pyBaba.Direction.RIGHT
+            pyBaba.Direction.RIGHT,
         ]
 
         self.action_size = len(self.action_space)
@@ -29,6 +34,9 @@ class BabaEnv(gym.Env):
         self.seed()
         self.reset()
 
+    def setGame(self, game):
+        self.game = game
+        
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
 
@@ -56,7 +64,7 @@ class BabaEnv(gym.Env):
 
         return self.get_obs(), reward, self.done, {}
 
-    def render(self, mode='human', close=False):
+    def render(self, mode="human", close=False):
         if close:
             self.renderer.quit_game()
 
@@ -64,13 +72,17 @@ class BabaEnv(gym.Env):
 
     def get_obs(self):
         return np.array(
-            pyBaba.Preprocess.StateToTensor(self.game),
-            dtype=np.float32).reshape(-1, self.game.GetMap().GetHeight(), self.game.GetMap().GetWidth())
+            pyBaba.Preprocess.StateToTensor(self.game), dtype=np.float32
+        ).reshape(-1, self.game.GetMap().GetHeight(), self.game.GetMap().GetWidth())
+
+    def copy(self):
+        return copy.deepcopy(self.game)
+        return copy.deepcopy(self)
 
 
 register(
-    id='baba-volcano-v0',
-    entry_point='environment:BabaEnv',
+    id="baba-volcano-v0",
+    entry_point="environment:BabaEnv",
     max_episode_steps=200,
-    nondeterministic=True
+    nondeterministic=True,
 )
