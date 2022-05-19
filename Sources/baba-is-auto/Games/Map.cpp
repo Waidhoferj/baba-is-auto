@@ -25,6 +25,14 @@ Map::Map(std::size_t width, std::size_t height)
     }
 }
 
+Map::Map(std::size_t width, std::size_t height, std::vector<Object> initObjects, std::vector<Object> objects)
+{
+    m_width = width;
+    m_height = height;
+    m_initObjects = initObjects;
+    m_objects = objects;
+}
+
 void Map::Reset()
 {
     m_objects = m_initObjects;
@@ -38,6 +46,16 @@ std::size_t Map::GetWidth() const
 std::size_t Map::GetHeight() const
 {
     return m_height;
+}
+
+std::vector<Object> Map::GetInitObjects() const
+{
+    return m_initObjects;
+}
+
+std::vector<Object> Map::GetObjects() const
+{
+    return m_objects;
 }
 
 void Map::Load(std::string_view filename)

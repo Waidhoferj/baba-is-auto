@@ -27,6 +27,9 @@ class Game
     //! \param filename The file name to load a map.
     explicit Game(std::string_view filename);
 
+    //! extensive constructor
+    Game(Map map, RuleManager rule_manager, PlayState play_state, ObjectType player_icon);
+
     //! Resets map and rule data.
     void Reset();
 
@@ -40,7 +43,7 @@ class Game
 
     //! Gets a rule manager object.
     //! \return A rule manager object.
-    RuleManager& GetRuleManager();
+    const RuleManager& GetRuleManager() const;
 
     //! Gets the play state of the game.
     //! \return The play state of the game.

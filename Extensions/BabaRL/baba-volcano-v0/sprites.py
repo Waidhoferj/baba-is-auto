@@ -3,6 +3,7 @@ import pygame
 import os
 BLOCK_SIZE = 48
 
+appdir = os.path.abspath(os.path.dirname(__file__))
 
 class SpriteLoader:
     def __init__(self):

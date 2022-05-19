@@ -28,5 +28,13 @@ void AddObject(pybind11::module& m)
         .def("HasTextType", &Object::HasTextType)
         .def("HasNounType", &Object::HasNounType)
         .def("HasVerbType", &Object::HasVerbType)
-        .def("HasPropertyType", &Object::HasPropertyType);
+        .def("HasPropertyType", &Object::HasPropertyType)
+        .def(pybind11::pickle(
+        [](const Object& o) { // dump
+            return pybind11::make_tuple(o.GetTypes());
+        },
+        [](pybind11::tuple t) { // load
+            return Object{t[0].cast<std::vector<ObjectType>>()};
+        }
+    ));
 }

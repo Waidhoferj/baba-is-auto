@@ -17,6 +17,13 @@ Game::Game(std::string_view filename)
     m_playState = PlayState::PLAYING;
 }
 
+Game::Game(Map map, RuleManager ruleManager, PlayState playState, ObjectType playerIcon){
+    m_map = map;
+    m_ruleManager = ruleManager;
+    m_playState = playState;
+    m_playerIcon = playerIcon;
+}
+
 void Game::Reset()
 {
     m_map.Reset();
@@ -36,7 +43,9 @@ const Map& Game::GetMap() const
     return m_map;
 }
 
-RuleManager& Game::GetRuleManager()
+//RuleManager& Game::GetRuleManager()
+
+const RuleManager& Game::GetRuleManager() const
 {
     return m_ruleManager;
 }
@@ -193,6 +202,7 @@ bool Game::CanMove(std::size_t x, std::size_t y, Direction dir)
 
     return true;
 }
+
 
 void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir,
                        ObjectType type)
