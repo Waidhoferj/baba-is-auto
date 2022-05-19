@@ -1,5 +1,6 @@
 import pyBaba
 import pygame
+import os
 
 BLOCK_SIZE = 48
 
@@ -15,8 +16,10 @@ class SpriteLoader:
                             pyBaba.ObjectType.ICON_GRASS: 'GRASS'}
 
         for i in self.icon_images:
+            p, _ = os.path.split(__file__)
+            fp = f'{p}/sprites/icon/{self.icon_images[i]}.gif'
             self.icon_images[i] = pygame.transform.scale(pygame.image.load(
-                './sprites/icon/{}.gif'.format(self.icon_images[i])), (BLOCK_SIZE, BLOCK_SIZE))
+                fp), (BLOCK_SIZE, BLOCK_SIZE))
 
         self.text_images = {pyBaba.ObjectType.BABA: 'BABA',
                             pyBaba.ObjectType.IS: 'IS',
