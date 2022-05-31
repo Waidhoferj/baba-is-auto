@@ -76,6 +76,30 @@ void Map::Load(std::string_view filename)
     }
 }
 
+void Map::Write(std::string_view filename)
+{
+    std::ofstream mapFile;
+    mapFile.open(filename);
+
+    mapFile << m_width << " " << m_height << "\n";
+
+    for (std::size_t i = 0; i < m_height; ++i)
+    {
+        for (std::size_t j = 0; j < m_width; ++j)
+        {
+            std::size_t idx = i * m_height + j;
+            if (j == m_width - 1)
+            {
+                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0]) << "\n";
+            }
+            else
+            {
+                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0]) << " ";
+            }
+        }
+    }
+}
+
 void Map::AddObject(std::size_t x, std::size_t y, ObjectType type)
 {
     m_objects.at(y * m_width + x).Add(type);

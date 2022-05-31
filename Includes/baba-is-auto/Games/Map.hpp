@@ -57,6 +57,11 @@ class Map
     //! \param filename The file name to load.
     void Load(std::string_view filename);
 
+
+    //! Writes the data of the map to a file.
+    //! \param filename The file name to write.
+    void Write(std::string_view filename);
+
     //! Adds an object to the map.
     //! \param x The x position.
     //! \param y The y position.

@@ -22,6 +22,7 @@ void AddMap(pybind11::module& m)
         .def("GetWidth", &Map::GetWidth)
         .def("GetHeight", &Map::GetHeight)
         .def("Load", &Map::Load)
+        .def("Write", &Map::Write)
         .def("AddObject", &Map::AddObject)
         .def("RemoveObject", &Map::RemoveObject)
         .def("At",
