@@ -16,6 +16,7 @@ build
 # Visual Studio Code files
 /.vscode
 *.code-workspace 
+pyBaba.egg-info
 
 # OSX files
 .DS_Store
