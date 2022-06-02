@@ -71,6 +71,11 @@ class Object
     //! \return The flag indicates that the object has verb type.
     bool HasVerbType() const;
 
+
+    //! Checks the object has icon type.
+    //! \return The flag indicates that the object has icon type.
+    bool HasIconType() const;
+
     //! Checks the object has property type.
     //! \return The flag indicates that the object has property type.
     bool HasPropertyType() const;

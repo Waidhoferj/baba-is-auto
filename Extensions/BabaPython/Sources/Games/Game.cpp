@@ -23,6 +23,7 @@ void AddGame(pybind11::module& m)
         .def("GetPlayState", &Game::GetPlayState)
         .def("GetPlayerIcon", &Game::GetPlayerIcon)
         .def("MovePlayer", &Game::MovePlayer)
+        .def("CanMove", &Game::CanMove)
         .def(pybind11::pickle(
         [](const Game& g) { // dump
             return pybind11::make_tuple(g.GetMap(), g.GetRuleManager(), g.GetPlayState(), g.GetPlayerIcon());

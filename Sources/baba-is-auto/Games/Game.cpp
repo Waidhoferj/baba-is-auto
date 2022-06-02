@@ -248,6 +248,18 @@ void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir,
         m_map.RemoveObject(x, y, type);
         return;
     }
+    // it's hot and you are melt
+    else if (m_map.At(_x, _y).HasIconType() && m_ruleManager.HasProperty(types, ObjectType::HOT))
+    {
+        const ObjectType player_icon_type = ConvertIconToText(m_playerIcon);
+
+        std::vector<ObjectType> player_types{ player_icon_type };
+
+        if (m_ruleManager.HasProperty(player_types, ObjectType::MELT)){
+            m_map.RemoveObject(x, y, type);
+            return;
+        }
+    }
     else if (m_map.At(_x, _y).HasTextType())
     {
         ProcessMove(_x, _y, dir, types[0]);

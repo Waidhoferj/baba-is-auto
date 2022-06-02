@@ -57,6 +57,13 @@ class Game
     //! \param dir The direction to move the player.
     void MovePlayer(Direction dir);
 
+    //! Checks an object can move.
+    //! \param x The x position.
+    //! \param y The y position.
+    //! \param dir The direction to move.
+    //! \return The flag indicates that an object can move.
+    bool CanMove(std::size_t x, std::size_t y, Direction dir);
+
  private:
     //! Parses a list of rules.
     void ParseRules();
@@ -66,13 +73,6 @@ class Game
     //! \param y The y position.
     //! \param direction The direction to check the rule.
     void ParseRule(std::size_t x, std::size_t y, RuleDirection direction);
-
-    //! Checks an object can move.
-    //! \param x The x position.
-    //! \param y The y position.
-    //! \param dir The direction to move.
-    //! \return The flag indicates that an object can move.
-    bool CanMove(std::size_t x, std::size_t y, Direction dir);
 
     //! Processes the move of the player.
     //! \param x The x position.

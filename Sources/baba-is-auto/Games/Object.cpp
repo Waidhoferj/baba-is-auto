@@ -105,4 +105,17 @@ bool Object::HasPropertyType() const
 
     return false;
 }
+
+bool Object::HasIconType() const
+{
+    for (auto& type : m_types)
+    {
+        if (IsIconType(type))
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
 }  // namespace baba_is_auto

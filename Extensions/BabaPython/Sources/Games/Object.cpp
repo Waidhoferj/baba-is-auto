@@ -29,6 +29,7 @@ void AddObject(pybind11::module& m)
         .def("HasNounType", &Object::HasNounType)
         .def("HasVerbType", &Object::HasVerbType)
         .def("HasPropertyType", &Object::HasPropertyType)
+        .def("HasIconType", &Object::HasIconType)
         .def(pybind11::pickle(
         [](const Object& o) { // dump
             return pybind11::make_tuple(o.GetTypes());
