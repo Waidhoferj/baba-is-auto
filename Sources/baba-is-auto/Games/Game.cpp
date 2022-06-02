@@ -249,7 +249,7 @@ void Game::ProcessMove(std::size_t x, std::size_t y, Direction dir,
         return;
     }
     // it's hot and you are melt
-    else if (m_ruleManager.HasProperty(types, ObjectType::HOT))
+    else if (m_map.At(_x, _y).HasIconType() && m_ruleManager.HasProperty(types, ObjectType::HOT))
     {
         const ObjectType player_icon_type = ConvertIconToText(m_playerIcon);
 
