@@ -25,7 +25,8 @@ Map::Map(std::size_t width, std::size_t height)
     }
 }
 
-Map::Map(std::size_t width, std::size_t height, std::vector<Object> initObjects, std::vector<Object> objects)
+Map::Map(std::size_t width, std::size_t height, std::vector<Object> initObjects,
+         std::vector<Object> objects)
 {
     m_width = width;
     m_height = height;
@@ -79,7 +80,7 @@ void Map::Load(std::string_view filename)
 void Map::Write(std::string_view filename)
 {
     std::ofstream mapFile;
-    mapFile.open(filename);
+    mapFile.open(filename.data());
 
     mapFile << m_width << " " << m_height << "\n";
 
@@ -90,11 +91,13 @@ void Map::Write(std::string_view filename)
             std::size_t idx = i * m_height + j;
             if (j == m_width - 1)
             {
-                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0]) << "\n";
+                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0])
+                        << "\n";
             }
             else
             {
-                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0]) << " ";
+                mapFile << static_cast<int>(m_objects.at(idx).GetTypes()[0])
+                        << " ";
             }
         }
     }
